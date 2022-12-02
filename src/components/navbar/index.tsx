@@ -8,12 +8,17 @@ import {
     Button,
     Text,
     useDisclosure,
+    useColorMode,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import NavItem from "./fragments/NavItem";
-import {X, AlignRight} from "react-feather";
+import { X, AlignRight, Sun, Moon } from "react-feather";
 
 export default function index() {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { colorMode, toggleColorMode } = useColorMode();
+    const bg = useColorModeValue("black", "white");
+    const color = useColorModeValue("white", "black");
     return (
         <>
             <Box
@@ -22,7 +27,6 @@ export default function index() {
                 alignItems={"center"}
                 py={4}
                 px={{ base: 10, md: 10, lg: 16 }}
-                bgColor={"white"}
             >
                 <Flex
                     justifyContent={{ base: "space-between" }}
@@ -45,17 +49,50 @@ export default function index() {
                         h={6}
                     />
                 </Flex>
-                <Flex gap={{ md: 5, lg: 8 }} display={{ base: "none", md: "flex" }} minW={"fit-content"}>
+                <Flex
+                    gap={{ md: 5, lg: 8 }}
+                    display={{ base: "none", md: "flex" }}
+                    minW={"fit-content"}
+                >
                     <NavItem title={"For sell"} path="home" />
                     <NavItem title={"For rent"} path={"workflow"} />
                     <NavItem title={"New Property"} path={"portfolio"} />
                     <NavItem title={"Blogs"} path={"contacts"} />
                     <NavItem title={"KPR"} path={"contacts"} />
                 </Flex>
-                <Box w={"full"} justifyContent={"right"} display={{ base: "none", md: "flex" }}>
-                    <Button justifyContent={"center"} bgColor={"black"} rounded={"full"} px={{ md: 4, lg: 10 }} _hover={{ bgColor: "black" }}>
+                <Box
+                    w={"full"}
+                    justifyContent={"right"}
+                    display={{ base: "none", md: "flex" }}
+                    alignItems={"center"}
+                >
+                    <Button
+                        onClick={toggleColorMode}
+                        variant={"ghost"}
+                        colorScheme={"white"}
+                        size={"sm"}
+                        fontWeight={"normal"}
+                        p={4}
+                    >
+                        <Icon
+                            as={colorMode === "light" ? Moon : Sun}
+                            w={6}
+                            h={6}
+                        />
+                    </Button>
+                    <Button
+                        justifyContent={"center"}
+                        color={color}
+                        bg={bg}
+                        rounded={"full"}
+                        px={{ md: 4, lg: 10 }}
+                        _hover={
+                            colorMode === "light"
+                                ? { bg: "white", color: "black" }
+                                : { bg: "black", color: "white" }
+                        }
+                    >
                         <Text
-                            color={"white"}
                             fontSize={{ base: "lg", md: "sm", lg: "md" }}
                             fontWeight={"normal"}
                             cursor={"pointer"}
@@ -73,7 +110,8 @@ export default function index() {
                     position={"absolute"}
                     w={"full"}
                     className={"glassmorphism"}
-                    bgColor={"white"}
+                    bg={bg}
+                    color={color}
                 >
                     <Stack as={"nav"} spacing={[4]}>
                         <NavItem title="For sell" path="home" />
@@ -82,9 +120,35 @@ export default function index() {
                         <NavItem title={"Blogs"} path={"contacts"} />
                         <NavItem title={"KPR"} path={"contacts"} />
                         <Flex justifyContent={"center"}>
-                            <Button bgColor={"black"} rounded={"full"} px={10} _hover={{ bgColor: "black" }} maxW={"50%"}>
+                            <Button
+                                onClick={toggleColorMode}
+                                variant={"ghost"}
+                                colorScheme={"white"}
+                                size={"sm"}
+                                fontWeight={"normal"}
+                                p={4}
+                            >
+                                <Icon
+                                    as={colorMode === "light" ? Moon : Sun}
+                                    w={6}
+                                    h={6}
+                                />
+                            </Button>
+                        </Flex>
+                        <Flex justifyContent={"center"}>
+                            <Button
+                                justifyContent={"center"}
+                                color={bg}
+                                bg={color}
+                                rounded={"full"}
+                                px={{ base: 6 }}
+                                _hover={
+                                    colorMode === "light"
+                                        ? { bg: "black", color: "white" }
+                                        : { bg: "white", color: "black" }
+                                }
+                            >
                                 <Text
-                                    color={"white"}
                                     fontSize={"md"}
                                     fontWeight={"normal"}
                                     cursor={"pointer"}

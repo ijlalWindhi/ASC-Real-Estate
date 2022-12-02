@@ -21,6 +21,7 @@ export default function CardLarge({
             w={"full"}
             as={motion.h1}
             whileHover={{ scale: 1.03 }}
+            cursor={"pointer"}
         >
             <Image
                 src={image}

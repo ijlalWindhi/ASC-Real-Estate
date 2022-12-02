@@ -46,7 +46,6 @@ export default function Hero() {
                 <Text
                     fontWeight={"thin"}
                     fontSize={{ base: "sm", md: "xl" }}
-                    color={"blackAlpha.800"}
                     maxW={{ base: "full", md: "50%", lg: "50%" }}
                     as={motion.h1}
                     initial={{ y: -50 }}

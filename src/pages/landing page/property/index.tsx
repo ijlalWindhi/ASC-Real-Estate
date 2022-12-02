@@ -1,19 +1,23 @@
 import React from "react";
-import { Flex, Text, Icon, Divider, Grid, GridItem } from "@chakra-ui/react";
+import { Flex, Text, Icon, Grid } from "@chakra-ui/react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import House1 from "../../assets/image-house.jpg";
-import CardLarge from "./fragments/CardLarge";
-import CardSmall from "./fragments/CardSmall";
+import Card from "./fragments/Card";
 import { motion } from "framer-motion";
+import { data } from "./fragments/DummyData";
+import { useColorModeValue } from "@chakra-ui/react";
 
 export default function Hero() {
     const scrollRef = React.useRef(null);
+    const bg = useColorModeValue("#F7F9FF", "gray.700");
+    const color = useColorModeValue("gray.700", "#F7F9FF");
     return (
         <Flex
             px={{ base: 10, md: 20, lg: 32 }}
             py={{ base: 5, md: 10 }}
             h="full"
             direction={{ base: "column" }}
+            bg={bg}
+            color={color}
         >
             <Text
                 color={"blue.200"}
@@ -24,7 +28,7 @@ export default function Hero() {
                 viewport={{ root: scrollRef }}
                 transition={{ duration: "5" }}
             >
-                BLOGS
+                PROPERTY
             </Text>
             <Flex
                 justifyContent={"space-between"}
@@ -42,7 +46,7 @@ export default function Hero() {
                     viewport={{ root: scrollRef }}
                     transition={{ duration: "5" }}
                 >
-                    Articles Related to Aesthetic Home Design
+                    Property in Cities and Provinces in Indonesia
                 </Text>
                 <Flex
                     alignItems={"center"}
@@ -52,14 +56,15 @@ export default function Hero() {
                     whileInView={{ x: 0 }}
                     viewport={{ root: scrollRef }}
                     transition={{ duration: "5" }}
+                    cursor={"pointer"}
+                    whileHover={{ x: 10 }}
                 >
                     <Text
                         fontWeight={"thin"}
                         fontSize={{ base: "sm", md: "xl" }}
-                        color={"blackAlpha.800"}
                         maxW={{ base: "full" }}
                     >
-                        Explore All Blog
+                        Explore All Properties
                     </Text>
                     <Icon
                         as={AiOutlineArrowRight}
@@ -72,51 +77,22 @@ export default function Hero() {
                 templateColumns={{
                     base: "repeat(1, 1fr)",
                     md: "repeat(2, 1fr)",
+                    lg: "repeat(3, 1fr)",
                 }}
-                gap={{ base: 10, md: 16 }}
+                gap={{ base: 4, sm: 5, md: 10 }}
                 mt={"5%"}
-                as={motion.div}
-                initial={{ y: 100, opacity: 0 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ root: scrollRef }}
             >
-                <GridItem w="100%">
-                    <CardLarge
-                        image={House1}
-                        title={
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                        }
-                        description={
-                            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nobis velit officiis harum, ut numquam et iste unde soluta perspiciatis voluptates. Voluptas harum quidem sit eligendi, totam fuga reiciendis earum?"
-                        }
-                        date={"20 August, 2022"}
+                {data.map((item) => (
+                    <Card
+                        id={item.id}
+                        price={item.price}
+                        description={item.description}
+                        image={item.image}
+                        button={["house", "negotable"]}
+                        bed={item.bed}
+                        bath={item.bath}
                     />
-                </GridItem>
-                <GridItem w="100%">
-                    <CardSmall
-                        image={House1}
-                        title={
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                        }
-                        date={"20 August, 2022"}
-                    />
-                    <Divider my={5} />
-                    <CardSmall
-                        image={House1}
-                        title={
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                        }
-                        date={"20 August, 2022"}
-                    />
-                    <Divider my={5} />
-                    <CardSmall
-                        image={House1}
-                        title={
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                        }
-                        date={"20 August, 2022"}
-                    />
-                </GridItem>
+                ))}
             </Grid>
         </Flex>
     );

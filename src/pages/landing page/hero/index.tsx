@@ -1,15 +1,18 @@
 import React from "react";
 import { Box, Text, Icon, Flex, Grid, GridItem } from "@chakra-ui/react";
-import ImageHero from "../../assets/images-hero.png";
+import ImageHero from "../../../assets/images-hero.png";
 import { GoLocation } from "react-icons/go";
 import { BiDollar, BiSearch } from "react-icons/bi";
 import { MdHomeWork } from "react-icons/md";
 import Navigation from "./fragments/Navigation";
 import Title from "./fragments/Title";
 import { motion } from "framer-motion";
+import { useColorModeValue } from "@chakra-ui/react";
 
 export default function Hero() {
     const scrollRef = React.useRef(null);
+    const bg = useColorModeValue("white", "gray.800");
+    const color = useColorModeValue("gray.800", "gray.800");
     return (
         <Flex
             justifyContent={{ base: "flex-end", md: "space-between" }}
@@ -26,7 +29,7 @@ export default function Hero() {
             bgColor={"#CAE7F4"}
             id={"hero"}
         >
-            <Flex flexDir={"column"} gap={{ base: 7, md: 10 }}>
+            <Flex flexDir={"column"} gap={{ base: 7, md: 10 }} color={color}>
                 <Text
                     fontSize={{ base: "2xl", sm: "4xl", md: "5xl", lg: "6xl" }}
                     fontWeight={"medium"}
@@ -53,7 +56,6 @@ export default function Hero() {
                     home using our comprehensive marketing platform
                 </Text>
                 <Grid
-                    bgColor={"white"}
                     maxW={{ base: "full", md: "fit-content" }}
                     py={{ base: 2, md: 3 }}
                     pl={{ base: 2.5, md: 3, lg: 10 }}
@@ -66,6 +68,8 @@ export default function Hero() {
                         lg: "repeat(4, 1fr)",
                     }}
                     overflow={"clip"}
+                    bg={bg}
+                    color={color}
                 >
                     <Navigation
                         icon={GoLocation}
@@ -88,6 +92,8 @@ export default function Hero() {
                         display={"flex"}
                         alignItems={"center"}
                         justifyContent={"flex-end"}
+                        bg={bg}
+                        color={color}
                     >
                         <Icon
                             as={BiSearch}

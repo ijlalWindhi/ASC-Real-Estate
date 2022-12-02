@@ -17,6 +17,7 @@ export default function CardSmall({ image, date, title }: CardLargeType) {
             flexDir={{ base: "column", md: "row" }}
             as={motion.div}
             whileHover={{ scale: 1.03 }}
+            cursor={"pointer"}
         >
             <Box
                 w={{ base: "full", md: "full" }}
