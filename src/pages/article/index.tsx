@@ -3,7 +3,9 @@ import {
     Flex,
     Text,
     Icon,
-    Divider
+    Divider,
+    Grid,
+    GridItem
 } from "@chakra-ui/react";
 import {AiOutlineArrowRight} from "react-icons/ai";
 import House1 from "../../assets/image-house.jpg"
@@ -19,27 +21,29 @@ export default function Hero() {
             direction={{ base: "column" }}
         >
             <Text color={"blue.200"} mt={10}>BLOGS</Text>
-            <Flex justifyContent={"space-between"} flexDir={{ base: "column", md: "row" }}>
-                <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight={"medium"} maxW={{ base: "full", md: "40%" }} lineHeight={'short'}>
+            <Flex justifyContent={"space-between"} flexDir={{ base: "column", md: "row" }} gap={{ md: 10, lg: 10 }}>
+                <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight={"medium"} maxW={{ base: "full", md: "80%", lg: "60%" }} lineHeight={'short'}>
                     Articles Related to Aesthetic Home Design
                 </Text>
                 <Flex alignItems={"center"} gap={2}>
-                    <Text fontWeight={"thin"} fontSize={{ base: "sm", md: "xl" }} color={"blackAlpha.800"} maxW={{ base: "full", md: "40%" }}>
+                    <Text fontWeight={"thin"} fontSize={{ base: "sm", md: "xl" }} color={"blackAlpha.800"} maxW={{ base: "full"}}>
                         Explore All Blog
                     </Text>
                     <Icon as={AiOutlineArrowRight} w={{ base: 4, md: 6 }} h={{ base: 4, md: 6 }} />
                 </Flex>
             </Flex>
-            <Flex gap={{ base: 10, md: 16 }} mt={"5%"} alignItems={"center"} flexDir={{ base: "column", md: "row" }}>
-                <CardLarge image={House1} title={"Lorem ipsum dolor sit amet consectetur adipisicing elit."} description={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nobis velit officiis harum, ut numquam et iste unde soluta perspiciatis voluptates. Voluptas harum quidem sit eligendi, totam fuga reiciendis earum?"} date={"20 August, 2022"} />
-                <Flex flexDirection={"column"} gap={10}>
+            <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)'}} gap={{ base: 10, md: 16 }} mt={"5%"}>
+                <GridItem w='100%'>
+                    <CardLarge image={House1} title={"Lorem ipsum dolor sit amet consectetur adipisicing elit."} description={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nobis velit officiis harum, ut numquam et iste unde soluta perspiciatis voluptates. Voluptas harum quidem sit eligendi, totam fuga reiciendis earum?"} date={"20 August, 2022"} />
+                </GridItem>
+                <GridItem w='100%'>
                     <CardSmall image={House1} title={"Lorem ipsum dolor sit amet consectetur adipisicing elit."} date={"20 August, 2022"} />
-                    <Divider/>
+                    <Divider my={5}/>
                     <CardSmall image={House1} title={"Lorem ipsum dolor sit amet consectetur adipisicing elit."} date={"20 August, 2022"} />
-                    <Divider/>
+                    <Divider my={5}/>
                     <CardSmall image={House1} title={"Lorem ipsum dolor sit amet consectetur adipisicing elit."} date={"20 August, 2022"} />
-                </Flex>
-            </Flex>
+                </GridItem>
+            </Grid>
         </Flex>
     );
 }

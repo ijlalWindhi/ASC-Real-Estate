@@ -10,8 +10,8 @@ type CardLargeType = {
 
 export default function CardLarge({image, date, title, description} : CardLargeType) {
   return (
-    <Box mt={{ base: 5, md: 0 }}>
-        <Image src={image} maxW={{ base: "full", md: "90%" }} rounded={"3xl"} />
+    <Box mt={{ base: 5, md: 0 }} w={"full"}>
+        <Image src={image} maxW={{ base: "full", md: "100%" }} rounded={"3xl"} />
         <Box maxW={"90%"} mt={{ base: 3 }}>
             <Text fontWeight={"thin"} fontSize={{ base: "xs", md:"sm" }}>{date}</Text>
             <Text fontWeight={"semibold"} fontSize={{ base: "lg", md: "2xl" }} my={{ base:1, md:2 }}>{title}</Text>

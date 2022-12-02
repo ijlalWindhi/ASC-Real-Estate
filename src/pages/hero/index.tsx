@@ -4,6 +4,8 @@ import {
     Text,
     Icon,
     Flex,
+    Grid,
+    GridItem,
 } from "@chakra-ui/react";
 import ImageHero from "../../assets/images-hero.png";
 import {GoLocation} from "react-icons/go";
@@ -44,17 +46,14 @@ export default function Hero() {
                 >
                     Connect with more than 75 million renters looking for new home using our comprehensive marketing platform
                 </Text>
-                <Flex bgColor={"white"} maxW={{ base: "full", md: "fit-content" }} py={{ base: 2, md: 3 }} pl={{ base: 2.5, md: 10 }} gap={{ base: 4, md: 6,lg: 10 }} rounded={"xl"}>
+                <Grid bgColor={"white"} maxW={{ base: "full", md: "fit-content" }} py={{ base: 2, md: 3 }} pl={{ base: 2.5, md: 10 }} gap={{ base: 4, md: 6,lg: 10 }} rounded={"xl"} justifyContent={{ base: "center", md: "flex-start" }} templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)', lg: 'repeat(4, 1fr)'}} overflow={"clip"}>
                     <Navigation icon={GoLocation} heading={"Location"} title={"Bali, Indonesia"} />
                     <Navigation icon={BiDollar} heading={"Price"} title={"$5,000-$10.000"} />
                     <Navigation icon={MdHomeWork} heading={"Type of home"} title={"Apartment"} />
-                    <Box pr={2} alignItems={"center"} display={{ base: "none", md: "flex" }}>
-                        <Icon as={BiSearch} w={{ base: 8, md: 12 }} h={{ base: 8, md: 12 }} bgColor={"black"} color={"white"} p={2} rounded={{ base: "lg", md: "2xl" }}/>
-                    </Box>
-                </Flex>
-                <Box pr={2} alignItems={"center"} bgColor={"black"} display={{ base: "flex", md: "none" }} rounded={"xl"} justifyContent={"flex-end"}>
-                    <Icon as={BiSearch} w={{ base: 8, md: 12 }} h={{ base: 8, md: 12 }} bgColor={"black"} color={"white"} p={2} rounded={{ base: "lg", md: "2xl" }}/>
-                </Box>
+                    <GridItem colSpan={{ base: 4, md: 1 }} pr={2} display={"flex"} alignItems={"center"} justifyContent={"flex-end"}>
+                        <Icon as={BiSearch} w={{ base: "full", md: 12 }} h={{ base: 8, md: 12 }} bgColor={"black"} color={"white"} p={2} rounded={{ base: "lg", md: "2xl" }} />
+                    </GridItem>
+                </Grid>
                 <Flex>
                     <Title heading={"1500+"} title={"Property Ready"} />
                     <Title heading={"500+"} title={"Happy Customer"} />

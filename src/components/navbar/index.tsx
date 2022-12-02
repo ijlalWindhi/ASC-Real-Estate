@@ -21,7 +21,7 @@ export default function index() {
                 justifyContent={"space-around"}
                 alignItems={"center"}
                 py={4}
-                px={{ base: 10, md: 20, lg: 32 }}
+                px={{ base: 10, md: 10, lg: 16 }}
                 bgColor={"white"}
             >
                 <Flex
@@ -45,7 +45,7 @@ export default function index() {
                         h={6}
                     />
                 </Flex>
-                <Flex gap={8} display={{ base: "none", md: "flex" }} minW={"fit-content"}>
+                <Flex gap={{ md: 5, lg: 8 }} display={{ base: "none", md: "flex" }} minW={"fit-content"}>
                     <NavItem title={"For sell"} path="home" />
                     <NavItem title={"For rent"} path={"workflow"} />
                     <NavItem title={"New Property"} path={"portfolio"} />
@@ -53,14 +53,14 @@ export default function index() {
                     <NavItem title={"KPR"} path={"contacts"} />
                 </Flex>
                 <Box w={"full"} justifyContent={"right"} display={{ base: "none", md: "flex" }}>
-                    <Button justifyContent={"center"} bgColor={"black"} rounded={"full"} px={10} _hover={{ bgColor: "black" }}>
+                    <Button justifyContent={"center"} bgColor={"black"} rounded={"full"} px={{ md: 4, lg: 10 }} _hover={{ bgColor: "black" }}>
                         <Text
                             color={"white"}
-                            fontSize={"md"}
+                            fontSize={{ base: "lg", md: "sm", lg: "md" }}
                             fontWeight={"normal"}
                             cursor={"pointer"}
                         >
-                            Login / Register
+                            Login/Register
                         </Text>
                     </Button>
                 </Box>

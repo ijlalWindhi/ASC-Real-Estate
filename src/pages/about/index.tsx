@@ -17,11 +17,11 @@ export default function Hero() {
             direction={"column" }
         >
             <Text color={"blue.200"} mt={10}>WHY CHOOSE OLINAROM</Text>
-            <Flex justifyContent={"space-between"} flexDir={{ base: "column", md: "row" }} gap={{ base: 4, md: 0 }}>
-                <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight={"medium"} maxW={{ base: "full", md: "40%" }} lineHeight={'short'}>
-                    Provides the most complate list of property
+            <Flex justifyContent={"space-between"} flexDir={{ base: "column", md: "row" }} gap={{ md: 10, lg: 10 }}>
+                <Text fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} fontWeight={"medium"} maxW={{ base: "full", md: "50%", lg: "60%" }} lineHeight={'short'}>
+                    Articles Related to Aesthetic Home Design
                 </Text>
-                <Text fontWeight={"thin"} fontSize={{ base: "sm", md: "xl" }} color={"blackAlpha.800"} maxW={{ base: "full", md: "40%" }}>
+                <Text fontWeight={"thin"} fontSize={{ base: "sm", md: "xl" }} color={"blackAlpha.800"} maxW={{ base: "full", md: "50%", lg: "50%" }}>
                     Find the ideal property that is most suitable for you. Starting from houses for sale that are minimalist, apartments for sale that are exclusive.
                 </Text>
             </Flex>

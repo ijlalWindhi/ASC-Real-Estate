@@ -12,7 +12,7 @@ export default function NavItem( {title, path} : NavItemsType ) {
         <Link to={path} smooth={true}>
             <Text
                 color={"black"}
-                fontSize={"lg"}
+                fontSize={{ base: "lg", md: "sm", lg: "md" }}
                 fontWeight={"light"}
                 cursor={"pointer"}
             >
