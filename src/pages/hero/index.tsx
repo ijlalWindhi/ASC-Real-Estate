@@ -1,20 +1,15 @@
 import React from "react";
-import {
-    Box,    
-    Text,
-    Icon,
-    Flex,
-    Grid,
-    GridItem,
-} from "@chakra-ui/react";
+import { Box, Text, Icon, Flex, Grid, GridItem } from "@chakra-ui/react";
 import ImageHero from "../../assets/images-hero.png";
-import {GoLocation} from "react-icons/go";
-import {BiDollar, BiSearch} from "react-icons/bi";
-import {MdHomeWork} from "react-icons/md";
+import { GoLocation } from "react-icons/go";
+import { BiDollar, BiSearch } from "react-icons/bi";
+import { MdHomeWork } from "react-icons/md";
 import Navigation from "./fragments/Navigation";
 import Title from "./fragments/Title";
+import { motion } from "framer-motion";
 
 export default function Hero() {
+    const scrollRef = React.useRef(null);
     return (
         <Flex
             justifyContent={{ base: "flex-end", md: "space-between" }}
@@ -25,7 +20,7 @@ export default function Hero() {
             h="full"
             direction={{ base: "column-reverse", md: "row" }}
             bgImage={ImageHero}
-            backgroundPosition={{base: "right bottom" }}
+            backgroundPosition={{ base: "right bottom" }}
             backgroundRepeat="no-repeat"
             backgroundSize={"contain"}
             bgColor={"#CAE7F4"}
@@ -36,6 +31,11 @@ export default function Hero() {
                     fontSize={{ base: "2xl", sm: "4xl", md: "5xl", lg: "6xl" }}
                     fontWeight={"medium"}
                     maxW={"xl"}
+                    as={motion.h1}
+                    initial={{ x: -50 }}
+                    whileInView={{ x: 0 }}
+                    viewport={{ root: scrollRef }}
+                    transition={{ duration: "5" }}
                 >
                     Discover a place you will love to live
                 </Text>
@@ -43,15 +43,61 @@ export default function Hero() {
                     fontSize={{ base: "sm", md: "lg" }}
                     fontWeight={"light"}
                     maxW={{ base: "100%", lg: "70%" }}
+                    as={motion.h1}
+                    initial={{ x: -50 }}
+                    whileInView={{ x: 0 }}
+                    viewport={{ root: scrollRef }}
+                    transition={{ duration: "5" }}
                 >
-                    Connect with more than 75 million renters looking for new home using our comprehensive marketing platform
+                    Connect with more than 75 million renters looking for new
+                    home using our comprehensive marketing platform
                 </Text>
-                <Grid bgColor={"white"} maxW={{ base: "full", md: "fit-content" }} py={{ base: 2, md: 3 }} pl={{ base: 2.5, md: 10 }} gap={{ base: 4, md: 6,lg: 10 }} rounded={"xl"} justifyContent={{ base: "center", md: "flex-start" }} templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(4, 1fr)', lg: 'repeat(4, 1fr)'}} overflow={"clip"}>
-                    <Navigation icon={GoLocation} heading={"Location"} title={"Bali, Indonesia"} />
-                    <Navigation icon={BiDollar} heading={"Price"} title={"$5,000-$10.000"} />
-                    <Navigation icon={MdHomeWork} heading={"Type of home"} title={"Apartment"} />
-                    <GridItem colSpan={{ base: 4, md: 1 }} pr={2} display={"flex"} alignItems={"center"} justifyContent={"flex-end"}>
-                        <Icon as={BiSearch} w={{ base: "full", md: 12 }} h={{ base: 8, md: 12 }} bgColor={"black"} color={"white"} p={2} rounded={{ base: "lg", md: "2xl" }} />
+                <Grid
+                    bgColor={"white"}
+                    maxW={{ base: "full", md: "fit-content" }}
+                    py={{ base: 2, md: 3 }}
+                    pl={{ base: 2.5, md: 3, lg: 10 }}
+                    gap={{ base: 4, md: 6, lg: 10 }}
+                    rounded={"xl"}
+                    justifyContent={{ base: "center", md: "flex-start" }}
+                    templateColumns={{
+                        base: "repeat(2, 1fr)",
+                        md: "repeat(3, 1fr)",
+                        lg: "repeat(4, 1fr)",
+                    }}
+                    overflow={"clip"}
+                >
+                    <Navigation
+                        icon={GoLocation}
+                        heading={"Location"}
+                        title={"Bali, Indonesia"}
+                    />
+                    <Navigation
+                        icon={BiDollar}
+                        heading={"Price"}
+                        title={"$5,000-$10.000"}
+                    />
+                    <Navigation
+                        icon={MdHomeWork}
+                        heading={"Type of home"}
+                        title={"Apartment"}
+                    />
+                    <GridItem
+                        colSpan={{ base: 1, md: 3, lg: 1 }}
+                        pr={2}
+                        display={"flex"}
+                        alignItems={"center"}
+                        justifyContent={"flex-end"}
+                    >
+                        <Icon
+                            as={BiSearch}
+                            w={{ base: "full", lg: 12 }}
+                            h={{ base: 8, md: 12 }}
+                            bgColor={"black"}
+                            color={"white"}
+                            p={2}
+                            rounded={{ base: "lg", md: "2xl" }}
+                        />
                     </GridItem>
                 </Grid>
                 <Flex>
