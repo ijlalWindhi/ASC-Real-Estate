@@ -63,6 +63,10 @@ export default function Hero() {
                 justifyContent={"space-between"}
                 mt={"5%"}
                 flexDir={{ base: "column", md: "row" }}
+                as={motion.div}
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ root: scrollRef }}
             >
                 <Card
                     icon={IoHomeOutline}

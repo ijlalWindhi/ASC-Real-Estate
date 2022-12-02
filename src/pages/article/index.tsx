@@ -75,6 +75,10 @@ export default function Hero() {
                 }}
                 gap={{ base: 10, md: 16 }}
                 mt={"5%"}
+                as={motion.div}
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ root: scrollRef }}
             >
                 <GridItem w="100%">
                     <CardLarge
