@@ -156,28 +156,42 @@ export default function index() {
                             </Button>
                         </Flex>
                         <Flex justifyContent={"center"}>
-                            <Link to="/login">
-                                <Button
-                                    justifyContent={"center"}
-                                    color={bg}
-                                    bg={color}
-                                    rounded={"full"}
-                                    px={{ base: 6 }}
-                                    _hover={
-                                        colorMode === "light"
-                                            ? { bg: "black", color: "white" }
-                                            : { bg: "white", color: "black" }
-                                    }
-                                >
-                                    <Text
-                                        fontSize={"md"}
-                                        fontWeight={"normal"}
-                                        cursor={"pointer"}
+                            {checkLogged() ? (
+                                <Text maxW={"50%"}>Hello, {user}</Text>
+                            ) : (
+                                <Link to="/login">
+                                    <Button
+                                        justifyContent={"center"}
+                                        color={color}
+                                        bg={bg}
+                                        rounded={"full"}
+                                        px={{ md: 4, lg: 10 }}
+                                        _hover={
+                                            colorMode === "light"
+                                                ? {
+                                                      bg: "white",
+                                                      color: "black",
+                                                  }
+                                                : {
+                                                      bg: "black",
+                                                      color: "white",
+                                                  }
+                                        }
                                     >
-                                        Login / Register
-                                    </Text>
-                                </Button>
-                            </Link>
+                                        <Text
+                                            fontSize={{
+                                                base: "lg",
+                                                md: "sm",
+                                                lg: "md",
+                                            }}
+                                            fontWeight={"normal"}
+                                            cursor={"pointer"}
+                                        >
+                                            Login/Register
+                                        </Text>
+                                    </Button>
+                                </Link>
+                            )}
                         </Flex>
                     </Stack>
                 </Box>
