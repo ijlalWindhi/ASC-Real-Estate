@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Text, Icon, Flex, Grid, GridItem } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { Text, Icon, Flex, Grid, GridItem } from "@chakra-ui/react";
 import ImageHero from "../../../assets/images-hero.png";
 import { GoLocation } from "react-icons/go";
 import { BiDollar, BiSearch } from "react-icons/bi";
@@ -14,6 +14,23 @@ export default function Hero() {
     const scrollRef = React.useRef(null);
     const bg = useColorModeValue("white", "gray.800");
     const color = useColorModeValue("gray.800", "gray.800");
+    const [count, setCount] = React.useState(0);
+    const getVisitor = localStorage.getItem("visitorCounter");
+    const incrementVisitor = count + 1;
+
+    useEffect(() => {
+        if (getVisitor) {
+            setCount(JSON.parse(getVisitor));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(
+            "visitorCounter",
+            JSON.stringify(incrementVisitor)
+        );
+    }, [incrementVisitor]);
+
     return (
         <Flex
             justifyContent={{ base: "flex-end", md: "space-between" }}
@@ -107,10 +124,16 @@ export default function Hero() {
                         />
                     </GridItem>
                 </Grid>
-                <Flex>
-                    <Title heading={"1500+"} title={"Property Ready"} />
-                    <Title heading={"500+"} title={"Happy Customer"} />
-                </Flex>
+                <Grid
+                    templateColumns={{
+                        base: "repeat(2, 1fr)",
+                        md: "repeat(3, 1fr)",
+                    }}
+                >
+                    <Title heading={1500} title={"Property Ready"} />
+                    <Title heading={500} title={"Happy Customer"} />
+                    <Title heading={count} title={"Visitor"} />
+                </Grid>
                 <Weather />
             </Flex>
         </Flex>
