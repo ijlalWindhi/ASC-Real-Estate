@@ -12,14 +12,13 @@ import FootIcon from "./fragments/FootIcon";
 export default function index() {
     return (
         <Flex
-            bgColor={"black"}
             px={{ base: 10, md: 20, lg: 32 }}
             py={{ base: 5, md: 10 }}
             justifyContent={"space-between"}
             flexDir={{ base: "column", md: "row" }}
             gap={{ base: 10, md: 0 }}
         >
-            <Box color={"white"}>
+            <Box>
                 <Text fontSize={"3xl"} fontWeight={"semibold"}>
                     Olinarom
                 </Text>

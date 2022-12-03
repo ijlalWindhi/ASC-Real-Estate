@@ -10,7 +10,7 @@ export default function FootIcon({ icon }: any) {
             whileHover={{ scale: 1.1 }}
             cursor={"pointer"}
         >
-            <Icon as={icon} w={5} h={5} color={"white"} />
+            <Icon as={icon} w={5} h={5} />
         </Box>
     );
 }

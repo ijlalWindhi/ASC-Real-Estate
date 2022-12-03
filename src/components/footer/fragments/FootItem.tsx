@@ -14,7 +14,6 @@ export default function FootItem({ title, path }: FootType) {
             <Text
                 fontSize={"md"}
                 fontWeight={"light"}
-                color={"white"}
                 as={motion.h1}
                 initial={{ x: 1 }}
                 whileHover={{ x: 10 }}
