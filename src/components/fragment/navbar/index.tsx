@@ -13,12 +13,22 @@ import {
 } from "@chakra-ui/react";
 import NavItem from "./fragments/NavItem";
 import { X, AlignRight, Sun, Moon } from "react-feather";
+import { Link } from "react-router-dom";
+import { checkLogged, LOCAL_STORAGE_USER } from "../../../utils/constants";
+import { getLocalStorage } from "../../../utils/helper/LocalStorage";
 
 export default function index() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { colorMode, toggleColorMode } = useColorMode();
     const bg = useColorModeValue("black", "white");
     const color = useColorModeValue("white", "black");
+    const [user, setUser] = React.useState<any>(null);
+
+    React.useEffect(() => {
+        const user = getLocalStorage(LOCAL_STORAGE_USER);
+        setUser(user);
+    }, []);
+
     return (
         <>
             <Box
@@ -80,26 +90,36 @@ export default function index() {
                             h={6}
                         />
                     </Button>
-                    <Button
-                        justifyContent={"center"}
-                        color={color}
-                        bg={bg}
-                        rounded={"full"}
-                        px={{ md: 4, lg: 10 }}
-                        _hover={
-                            colorMode === "light"
-                                ? { bg: "white", color: "black" }
-                                : { bg: "black", color: "white" }
-                        }
-                    >
-                        <Text
-                            fontSize={{ base: "lg", md: "sm", lg: "md" }}
-                            fontWeight={"normal"}
-                            cursor={"pointer"}
-                        >
-                            Login/Register
-                        </Text>
-                    </Button>
+                    {checkLogged() ? (
+                        <Text maxW={"50%"}>Hello, {user}</Text>
+                    ) : (
+                        <Link to="/login">
+                            <Button
+                                justifyContent={"center"}
+                                color={color}
+                                bg={bg}
+                                rounded={"full"}
+                                px={{ md: 4, lg: 10 }}
+                                _hover={
+                                    colorMode === "light"
+                                        ? { bg: "white", color: "black" }
+                                        : { bg: "black", color: "white" }
+                                }
+                            >
+                                <Text
+                                    fontSize={{
+                                        base: "lg",
+                                        md: "sm",
+                                        lg: "md",
+                                    }}
+                                    fontWeight={"normal"}
+                                    cursor={"pointer"}
+                                >
+                                    Login/Register
+                                </Text>
+                            </Button>
+                        </Link>
+                    )}
                 </Box>
             </Box>
             {isOpen ? (
@@ -136,26 +156,28 @@ export default function index() {
                             </Button>
                         </Flex>
                         <Flex justifyContent={"center"}>
-                            <Button
-                                justifyContent={"center"}
-                                color={bg}
-                                bg={color}
-                                rounded={"full"}
-                                px={{ base: 6 }}
-                                _hover={
-                                    colorMode === "light"
-                                        ? { bg: "black", color: "white" }
-                                        : { bg: "white", color: "black" }
-                                }
-                            >
-                                <Text
-                                    fontSize={"md"}
-                                    fontWeight={"normal"}
-                                    cursor={"pointer"}
+                            <Link to="/login">
+                                <Button
+                                    justifyContent={"center"}
+                                    color={bg}
+                                    bg={color}
+                                    rounded={"full"}
+                                    px={{ base: 6 }}
+                                    _hover={
+                                        colorMode === "light"
+                                            ? { bg: "black", color: "white" }
+                                            : { bg: "white", color: "black" }
+                                    }
                                 >
-                                    Login / Register
-                                </Text>
-                            </Button>
+                                    <Text
+                                        fontSize={"md"}
+                                        fontWeight={"normal"}
+                                        cursor={"pointer"}
+                                    >
+                                        Login / Register
+                                    </Text>
+                                </Button>
+                            </Link>
                         </Flex>
                     </Stack>
                 </Box>

@@ -13,7 +13,7 @@ import {
 import { BiBed, BiBath } from "react-icons/bi";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../../../components/navbar";
+import Navbar from "../../../../components/fragment/navbar";
 import { data } from "./DummyData";
 import { motion } from "framer-motion";
 

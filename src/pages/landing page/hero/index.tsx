@@ -31,6 +31,10 @@ export default function Hero() {
         );
     }, [incrementVisitor]);
 
+    useEffect(() => {
+        document.title = "Real Estate | Home";
+    }, []);
+
     return (
         <Flex
             justifyContent={{ base: "flex-end", md: "space-between" }}
