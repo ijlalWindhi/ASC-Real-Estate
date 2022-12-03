@@ -8,6 +8,7 @@ import Navigation from "./fragments/Navigation";
 import Title from "./fragments/Title";
 import { motion } from "framer-motion";
 import { useColorModeValue } from "@chakra-ui/react";
+import Weather from "./fragments/Weather";
 
 export default function Hero() {
     const scrollRef = React.useRef(null);
@@ -110,6 +111,7 @@ export default function Hero() {
                     <Title heading={"1500+"} title={"Property Ready"} />
                     <Title heading={"500+"} title={"Happy Customer"} />
                 </Flex>
+                <Weather />
             </Flex>
         </Flex>
     );
