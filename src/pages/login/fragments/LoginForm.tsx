@@ -15,8 +15,10 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import LoginHandler from "./LoginHandler";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = React.useState(false);
     const [show, setShow] = React.useState(false);
     const handleClick = () => setShow(!show);
@@ -33,6 +35,7 @@ export default function LoginForm() {
         await LoginHandler(data);
         setTimeout(() => {
             setIsLoading(false);
+            navigate("/");
         }, 1000);
     };
 
