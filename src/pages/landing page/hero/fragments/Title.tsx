@@ -3,7 +3,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 type TitleType = {
-    heading: string;
+    heading: number;
     title: string;
 };
 
@@ -20,7 +20,7 @@ export default function Title({ heading, title }: TitleType) {
             transition={{ duration: "5" }}
         >
             <Text fontSize={{ base: "xl", md: "4xl" }} fontWeight={"semibold"}>
-                {heading}
+                {heading}+
             </Text>
             <Text
                 maxW={"40%"}
