@@ -10,19 +10,24 @@ type RegisterHandler = {
     password: string;
 };
 
-export default function RegisterHandler({email, password} : RegisterHandler) {
-    createUserWithEmailAndPassword(auth, email, password)
+export default async function RegisterHandler({email, password} : RegisterHandler) : Promise<any> {
+    try {
+    await createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
             return Promise.resolve({
                 status: "success",
                 message: "User created"
             });
         })
-        .catch((error) => {
-            const errorMessage = error.message;
-            return Promise.reject({
-                status: "error",
-                message: errorMessage
-            })
-        });
+        return Promise.resolve({
+                status: "success",
+                message: "User created"
+            });
+    } catch(error: any) {
+        const errorMessage = error.message;
+        return Promise.resolve({
+            status: "error",
+            message: errorMessage
+        })
+    };
     }

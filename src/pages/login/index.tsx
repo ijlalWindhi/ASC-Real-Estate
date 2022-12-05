@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Center, Container, Grid, GridItem, Image } from "@chakra-ui/react";
 import LoginForm from "./fragments/LoginForm";
 import ImageLogin from "../../assets/image-login.svg";
+import { checkLogged } from "../../utils/constants";
 
 export default function index() {
+    const navigate = useNavigate();
     useEffect(() => {
+        const isLoggedIn = checkLogged();
+        if (isLoggedIn) {
+            navigate("/");
+        }
         document.title = "Real Estate | Login";
     }, []);
 

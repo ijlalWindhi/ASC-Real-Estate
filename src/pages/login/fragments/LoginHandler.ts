@@ -12,10 +12,10 @@ type LoginHandlerProps = {
     password: string;
 };
 
-export default function LoginHandler({email, password} : LoginHandlerProps) {
-    signInWithEmailAndPassword(auth, email, password)
+export default async function LoginHandler({email, password} : LoginHandlerProps) : Promise<any> {
+    try{
+        await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-
             const user = userCredential.user
             setLocalStorage({key: LOCAL_STORAGE_LOGIN, value: user.refreshToken});
             setLocalStorage({key: LOCAL_STORAGE_USER, value: user.email});
@@ -25,11 +25,15 @@ export default function LoginHandler({email, password} : LoginHandlerProps) {
                 message: "User logged in"
             });
         })
-        .catch((error) => {
-            const errorMessage = error.message;
-            return Promise.reject({
-                status: "error",
-                message: errorMessage
-            })
-        });
+        return Promise.resolve({
+                status: "success",
+                message: "User logged in"
+            });
+    } catch(error: any) {
+        const errorMessage = error.message;
+        return Promise.resolve({
+            status: "error",
+            message: errorMessage
+        })
+    };
     }

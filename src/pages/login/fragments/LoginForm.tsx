@@ -16,11 +16,14 @@ import {
 } from "@chakra-ui/react";
 import LoginHandler from "./LoginHandler";
 import { useNavigate } from "react-router-dom";
+import AlertNotification from "../../../components/fragment/alert";
 
 export default function LoginForm() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = React.useState(false);
     const [show, setShow] = React.useState(false);
+    const [message, setMessage] = React.useState("");
+    const [status, setStatus] = React.useState("");
     const handleClick = () => setShow(!show);
     const bg = useColorModeValue("gray.800", "white");
     const color = useColorModeValue("white", "gray.800");
@@ -32,11 +35,22 @@ export default function LoginForm() {
 
     const onSubmit = async (data: any) => {
         setIsLoading(!isLoading);
-        await LoginHandler(data);
+        const response = await LoginHandler(data);
+        if (response.status === "success") {
+            setStatus(response.status);
+            setMessage(response.message);
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } else {
+            setMessage(response.message);
+            setStatus(response.status);
+        }
         setTimeout(() => {
+            setMessage("");
+            setStatus("");
             setIsLoading(false);
-            navigate("/");
-        }, 1000);
+        }, 3000);
     };
 
     return (
@@ -44,6 +58,9 @@ export default function LoginForm() {
             <Link to={"/"}>
                 <Text>{"<-- Back"}</Text>
             </Link>
+            {message !== "" && (
+                <AlertNotification message={message} status={status} />
+            )}
             <Box mt={4}>
                 <Text fontSize={{ base: "2xl", lg: "4xl" }} fontWeight={700}>
                     Login
