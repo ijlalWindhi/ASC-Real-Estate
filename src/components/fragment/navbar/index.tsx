@@ -16,9 +16,15 @@ import { X, AlignRight, Sun, Moon } from "react-feather";
 import { Link } from "react-router-dom";
 import { checkLogged, LOCAL_STORAGE_USER } from "../../../utils/constants";
 import { getLocalStorage } from "../../../utils/helper/LocalStorage";
+import ModalLogout from "../modal";
 
 export default function index() {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const {
+        isOpen: isLogoutOpen,
+        onOpen: onLogoutOpen,
+        onClose: onLogoutClose,
+    } = useDisclosure();
     const { colorMode, toggleColorMode } = useColorMode();
     const bg = useColorModeValue("black", "white");
     const color = useColorModeValue("white", "black");
@@ -31,6 +37,11 @@ export default function index() {
 
     return (
         <>
+            <ModalLogout
+                isOpen={isLogoutOpen}
+                onOpen={onLogoutOpen}
+                onClose={onLogoutClose}
+            />
             <Box
                 display={"flex"}
                 justifyContent={"space-around"}
@@ -91,7 +102,42 @@ export default function index() {
                         />
                     </Button>
                     {checkLogged() ? (
-                        <Text maxW={"50%"}>Hello, {user}</Text>
+                        <Flex>
+                            <Text w={"50%"} overflow={"clip"}>
+                                Hello, {user}
+                            </Text>
+                            <Button
+                                justifyContent={"center"}
+                                color={color}
+                                bg={bg}
+                                rounded={"full"}
+                                px={{ md: 4, lg: 8 }}
+                                _hover={
+                                    colorMode === "light"
+                                        ? {
+                                              bg: "blackAlpha.800",
+                                              color: "white",
+                                          }
+                                        : {
+                                              bg: "whiteAlpha.800",
+                                              color: "black",
+                                          }
+                                }
+                                onClick={onLogoutOpen}
+                            >
+                                <Text
+                                    fontSize={{
+                                        base: "lg",
+                                        md: "sm",
+                                        lg: "md",
+                                    }}
+                                    fontWeight={"normal"}
+                                    cursor={"pointer"}
+                                >
+                                    Logout
+                                </Text>
+                            </Button>
+                        </Flex>
                     ) : (
                         <Link to="/login">
                             <Button
@@ -102,8 +148,14 @@ export default function index() {
                                 px={{ md: 4, lg: 10 }}
                                 _hover={
                                     colorMode === "light"
-                                        ? { bg: "white", color: "black" }
-                                        : { bg: "black", color: "white" }
+                                        ? {
+                                              bg: "blackAlpha.800",
+                                              color: "white",
+                                          }
+                                        : {
+                                              bg: "whiteAlpha.800",
+                                              color: "black",
+                                          }
                                 }
                             >
                                 <Text
@@ -157,24 +209,57 @@ export default function index() {
                         </Flex>
                         <Flex justifyContent={"center"}>
                             {checkLogged() ? (
-                                <Text maxW={"50%"}>Hello, {user}</Text>
-                            ) : (
-                                <Link to="/login">
+                                <Flex flexDir={"column"} gap={3}>
+                                    <Text maxW={"100%"}>Hello, {user}</Text>
                                     <Button
                                         justifyContent={"center"}
-                                        color={color}
-                                        bg={bg}
+                                        color={bg}
+                                        bg={color}
                                         rounded={"full"}
-                                        px={{ md: 4, lg: 10 }}
+                                        px={{ md: 4, lg: 8 }}
                                         _hover={
                                             colorMode === "light"
                                                 ? {
                                                       bg: "white",
-                                                      color: "black",
+                                                      color: "blackAlpha.800",
                                                   }
                                                 : {
                                                       bg: "black",
-                                                      color: "white",
+                                                      color: "whiteAlpha.800",
+                                                  }
+                                        }
+                                        onClick={onLogoutOpen}
+                                    >
+                                        <Text
+                                            fontSize={{
+                                                base: "lg",
+                                                md: "sm",
+                                                lg: "md",
+                                            }}
+                                            fontWeight={"normal"}
+                                            cursor={"pointer"}
+                                        >
+                                            Logout
+                                        </Text>
+                                    </Button>
+                                </Flex>
+                            ) : (
+                                <Link to="/login">
+                                    <Button
+                                        justifyContent={"center"}
+                                        color={bg}
+                                        bg={color}
+                                        rounded={"full"}
+                                        px={{ base: 6 }}
+                                        _hover={
+                                            colorMode === "light"
+                                                ? {
+                                                      bg: "white",
+                                                      color: "blackAlpha.800",
+                                                  }
+                                                : {
+                                                      bg: "black",
+                                                      color: "whiteAlpha.800",
                                                   }
                                         }
                                     >
